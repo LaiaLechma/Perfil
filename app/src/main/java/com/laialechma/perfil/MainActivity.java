@@ -1,5 +1,6 @@
 package com.laialechma.perfil;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.Snackbar;
@@ -7,29 +8,80 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
+import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.net.URI;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextInputEditText agregarname;
+    DatePicker agregarfecha;
+    TextInputEditText agregartelefono;
+    TextInputEditText agregarmaill;
+    TextInputEditText agregardescripcion;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toast.makeText(this,getResources().getString(R.string.oncreate), Toast.LENGTH_LONG).show();
-        agregarbotones();
-        agregartelefono();
-        agregarmail();
-        agregartext();
-        agregardescripcion();
+
+
+        agregarname = (TextInputEditText) findViewById(R.id.txtname);
+        String name = agregarname.getText().toString();
+
+        agregartelefono = (TextInputEditText) findViewById(R.id.txttelephone);
+        String phone = agregartelefono.getText().toString();
+
+        agregardescripcion = (TextInputEditText) findViewById(R.id.txtdescripcion);
+        String descripcion = agregardescripcion.getText().toString();
+
+        agregarmaill= (TextInputEditText) findViewById(R.id.txtmail);
+        String email = agregarmaill.getText().toString();
+
+        agregarfecha= (DatePicker) findViewById(R.id.fechaNac);
+
+
+        Bundle parametros = getIntent().getExtras();
+        if(parametros != null) {
+            agregarname.setText(parametros.getString("pname"));
+            agregardescripcion.setText(parametros.getString("pdescripcion"));
+            agregartelefono.setText(parametros.getString("ptelefono"));
+            agregarmaill.setText(parametros.getString("pmail"));
+        }
+
+
+        Button botonGuardar = (Button) findViewById(R.id.botonGuardar);
+        botonGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,PantallaResultados.class);
+
+                intent.putExtra(getResources().getString(R.string.pname), agregarname.getText().toString());
+                intent.putExtra(getResources().getString(R.string.ptelefono), agregartelefono.getText().toString());
+                intent.putExtra(getResources().getString(R.string.pmail), agregarmaill.getText().toString());
+                intent.putExtra(getResources().getString(R.string.pdescripcion), agregardescripcion.getText().toString());
+                String Fecha= agregarfecha.getDayOfMonth()+"/"+agregarfecha.getMonth()+"/"+agregarfecha.getYear();
+                intent.putExtra("pfecha", Fecha);
+
+                startActivity(intent);
+            }
+
+
+        });
+
     }
 
     @Override
@@ -68,70 +120,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this,getResources().getString(R.string.ondestroy), Toast.LENGTH_LONG).show();
     }
 
-
-
-    public void agregartext(){
-        TextInputEditText txtname = (TextInputEditText) findViewById(R.id.txtname);
-        txtname.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, getResources().getString(R.string.escribaNombre), Snackbar.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void agregartelefono(){
-        TextInputEditText txttelephone = (TextInputEditText) findViewById(R.id.txttelephone);
-        txttelephone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, getResources().getString(R.string.escribaTelefono), Snackbar.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void agregarmail(){
-        TextInputEditText txtmail = (TextInputEditText) findViewById(R.id.txtmail);
-        txtmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, getResources().getString(R.string.escribaMail), Snackbar.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void agregardescripcion(){
-        TextInputEditText txtdescripcion = (TextInputEditText) findViewById(R.id.txtdescripcion);
-        txtdescripcion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, getResources().getString(R.string.escribaDescripcion), Snackbar.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void agregarbotones(){
-        Button botonGuardar = (Button) findViewById(R.id.botonGuardar);
-        botonGuardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, getResources().getString(R.string.click_boton_guardar), Snackbar.LENGTH_SHORT).show();
-
-            }
-        });
-
-        botonGuardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,PantallaResultados.class);
-                //intent.putExtra(getResources().getString(R.string.pname),contacto.get(position).getName);
-                //intent.putExtra()
-
-                startActivity(intent);
-                finish();
-            }
-        });
-    }
 
 
 }

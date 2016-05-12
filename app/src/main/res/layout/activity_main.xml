@@ -19,51 +19,75 @@
     android:orientation="vertical"
     >
 
-
-    <android.support.design.widget.TextInputEditText
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/name"
-        android:textStyle="bold"
-        android:textSize="@dimen/textname"
-        android:id="@+id/txtname"/>
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/fecha"
-        android:id="@+id/fechanacimiento" />
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/txtname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name" />
+
+    </android.support.design.widget.TextInputLayout>
 
     <DatePicker
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/datePicker"/>
+        android:layout_height="200dp"
+        android:id="@+id/fechaNac"
+        android:contentDescription="@string/fecha"
+        android:layout_below="@+id/input_layout_name"
+        android:layout_centerHorizontal="true"/>
 
-    <android.support.design.widget.TextInputEditText
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_telefono"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/telefono"
-        android:id="@+id/txttelephone" />
+        android:layout_height="wrap_content">
 
-    <android.support.design.widget.TextInputEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/mail"
-        android:id="@+id/txtmail"/>
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/txttelephone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/telefono" />
 
-    <android.support.design.widget.TextInputEditText
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/descripcion"
-        android:id="@+id/txtdescripcion"/>
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/txtmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mail" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_descripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/txtdescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/descripcion" />
+
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:id="@+id/botonGuardar"
         android:text="@string/texto_boton_guardar"
-        android:theme="@style/botones"/>
+        android:theme="@style/botones"
+        android:onClick="onClick"/>
 
 
 

@@ -29,18 +29,45 @@
                 android:text="@string/confirmar"
                 android:layout_gravity="center_horizontal" />
 
-            <ListView
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/lstContactos"
-                android:layout_gravity="center_horizontal" />
+                android:id="@+id/nameView"
+                android:text="@string/name"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fechaView"
+                android:text="@string/fecha"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/phoneView"
+                android:text="@string/telefono"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mailView"
+                android:text="@string/mail"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/descripionView"
+                android:text="@string/descripcion"/>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:id="@+id/botonModificar"
                 android:text="@string/texto_boton_modificar"
-                android:theme="@style/botones"/>
+                android:theme="@style/botones"
+                />
 
 
 

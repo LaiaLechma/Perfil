@@ -11,49 +11,67 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class PantallaResultados extends AppCompatActivity {
 
-    //ArrayList<Contacto> contactos;
+    TextView nameView;
+    TextView phoneView;
+    TextView mailView;
+    TextView descripcionView;
+    TextView fechaView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_resultados);
-        agregarbotones();
-    }
-        /*
-        contactos = new ArrayList<Contacto>();
-        contactos.add(new Contacto("Ana Maria", "anamaria@gmail.com", "77799945"));
-        ArrayList<String> nombresContacto = new ArrayList<>();
-        for (Contacto contacto : contactos){
-            nombresContacto.add(contactos.getname()
-        }
-
-        ListView lstContactos = (ListView) findViewById(R.id.lstContactos);
-        lstContactos.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, contactos));
 
 
        Bundle parametros = getIntent().getExtras();
-        String pname = parametros.getString(getResources().getString(R.string.pname));
-        String ptelefono = parametros.getString(getResources().getString(R.string.ptelefono));
-        String pmail = parametros.getString(getResources().getString(R.string.pmail));
-        String pdescripcion = parametros.getString(getResources().getString(R.string.pdescripcion));
+        String name = parametros.getString(getResources().getString(R.string.pname));
+        String phone = parametros.getString(getResources().getString(R.string.ptelefono));
+        String mail = parametros.getString(getResources().getString(R.string.pmail));
+        String descripcion = parametros.getString(getResources().getString(R.string.pdescripcion));
+        String fecha = parametros.getString(getResources().getString(R.string.pfecha));
 
-        TextInputEditText txtname = (TextInputEditText) findViewById(R.id.txtname);
-        TextInputEditText txttelephone = (TextInputEditText) findViewById(R.id.txttelephone);
-        TextInputEditText txtmail = (TextInputEditText) findViewById(R.id.txtmail);
-        TextInputEditText txtdescripcion = (TextInputEditText) findViewById(R.id.txtdescripcion);
 
-        txtname.setText(pname);
-        txttelephone.setText(ptelefono);
-        txtmail.setText(pmail);
-        txtdescripcion.setText(pdescripcion);
+        nameView = (TextView) findViewById(R.id.nameView);
+        phoneView = (TextView) findViewById(R.id.phoneView);
+        mailView = (TextView) findViewById(R.id.mailView);
+        descripcionView = (TextView) findViewById(R.id.descripionView);
+        fechaView = (TextView) findViewById(R.id.fechaView);
 
-    */
+        nameView.setText(name);
+        phoneView.setText(phone);
+        mailView.setText(mail);
+        descripcionView.setText(descripcion);
+        fechaView.setText(fecha);
+
+
+        Button botonModificar = (Button) findViewById(R.id.botonModificar);
+        botonModificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PantallaResultados.this, MainActivity.class);
+                intent.putExtra(getResources().getString(R.string.pname), nameView.getText().toString());
+                intent.putExtra(getResources().getString(R.string.ptelefono), phoneView.getText().toString());
+                intent.putExtra(getResources().getString(R.string.pmail), mailView.getText().toString());
+                intent.putExtra(getResources().getString(R.string.pdescripcion), descripcionView.getText().toString());
+                intent.putExtra(getResources().getString(R.string.pfecha), descripcionView.getText().toString());
+                startActivity(intent);
+
+
+            }
+
+        });
+    }
+
+
+
+
 
 
     @Override
@@ -66,25 +84,5 @@ public class PantallaResultados extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    public void agregarbotones(){
-        Button botonModificar = (Button) findViewById(R.id.botonModificar);
-        botonModificar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, getResources().getString(R.string.click_boton_modificar), Snackbar.LENGTH_SHORT).show();
-
-            }
-        });
-
-        botonModificar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PantallaResultados.this,MainActivity.class);
-                //intent.putExtra(getResources().getString(R.string.pname), contacto.get(position).getName);
-                startActivity(intent);
-                finish();
-            }
-        });
-    }
-    }
+}
 
