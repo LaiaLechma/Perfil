@@ -56,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle parametros = getIntent().getExtras();
         if(parametros != null) {
-            agregarname.setText(parametros.getString("pname"));
-            agregardescripcion.setText(parametros.getString("pdescripcion"));
-            agregartelefono.setText(parametros.getString("ptelefono"));
-            agregarmaill.setText(parametros.getString("pmail"));
+            agregarname.setText(parametros.getString("Nombre"));
+            agregardescripcion.setText(parametros.getString("Descripcion"));
+            agregartelefono.setText(parametros.getString("Telefono"));
+            agregarmaill.setText(parametros.getString("Mail"));
         }
 
 

@@ -70,19 +70,5 @@ public class PantallaResultados extends AppCompatActivity {
     }
 
 
-
-
-
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        if (keyCode == KeyEvent.KEYCODE_BACK){
-            Intent intent = new Intent(PantallaResultados.this, MainActivity.class);
-            startActivity(intent);
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
 }
 
